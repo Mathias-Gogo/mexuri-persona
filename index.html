@@ -1,0 +1,1506 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mexuri — Personas & Pricing</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Nunito:wght@400;500;600;700&family=Poppins:ital,wght@0,300;0,400;0,500;1,300&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #f7f7f5;
+            --card: #ffffff;
+            --border: #e0e0db;
+            --text: #111111;
+            --muted: #888888;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(0, 0, 0, 0.035) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 0, 0, 0.035) 1px, transparent 1px);
+            background-size: 48px 48px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .wrapper {
+            position: relative;
+            z-index: 1;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 60px 24px 80px;
+        }
+
+        /* NAV TABS (top-level: Personas / Pricing) */
+        .nav-tabs {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            margin-bottom: 52px;
+            animation: fadeUp 0.5s ease both;
+        }
+
+        .nav-btn {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            padding: 11px 32px;
+            border-radius: 100px;
+            border: 1.5px solid #111;
+            background: transparent;
+            color: #111;
+            cursor: pointer;
+            transition: all 0.22s ease;
+        }
+
+        .nav-btn.active {
+            background: #111;
+            color: #fff;
+        }
+
+        .nav-btn:hover:not(.active) {
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        /* SECTION */
+        .section {
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+            animation: fadeUp 0.4s ease both;
+        }
+
+        /* HEADER */
+        .header {
+            text-align: center;
+            margin-bottom: 56px;
+            animation: fadeUp 0.7s ease both;
+        }
+
+        .badge {
+            display: inline-block;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: #111;
+            border: 1px solid rgba(0, 0, 0, 0.18);
+            background: rgba(0, 0, 0, 0.05);
+            padding: 5px 14px;
+            border-radius: 100px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            margin-bottom: 14px;
+        }
+
+        h1 span {
+            background: linear-gradient(90deg, #111, #666);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            color: var(--muted);
+            font-size: 0.95rem;
+            font-weight: 300;
+            max-width: 480px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* PERSONA TABS */
+        .tabs {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin-bottom: 48px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            background: var(--card);
+            border: 1px solid var(--border);
+            color: #555;
+            font-family: 'Nunito', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            padding: 10px 22px;
+            border-radius: 100px;
+            cursor: pointer;
+            transition: all 0.22s ease;
+        }
+
+        .tab-btn:hover {
+            border-color: #111;
+            color: #111;
+        }
+
+        .tab-btn.active {
+            background: #111;
+            border-color: #111;
+            color: #fff;
+        }
+
+        .persona-panel {
+            display: none;
+            animation: fadeUp 0.4s ease both;
+        }
+
+        .persona-panel.active {
+            display: block;
+        }
+
+        .persona-grid {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 24px;
+            align-items: start;
+        }
+
+        @media (max-width: 700px) {
+            .persona-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .persona-identity {
+                position: static !important;
+            }
+        }
+
+        /* IDENTITY CARD */
+        .persona-identity {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            overflow: hidden;
+            position: sticky;
+            top: 24px;
+        }
+
+        .avatar-img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            object-position: top center;
+            display: block;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .identity-body {
+            padding: 24px 22px 26px;
+        }
+
+        .persona-name {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+
+        .persona-role {
+            color: #555;
+            font-size: 0.78rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.09em;
+            margin-bottom: 18px;
+        }
+
+        .identity-row {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            margin-bottom: 9px;
+            font-size: 0.85rem;
+            color: var(--muted);
+        }
+
+        .identity-row .iicon {
+            width: 20px;
+            height: 20px;
+            background: #f0f0ec;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            flex-shrink: 0;
+        }
+
+        .identity-row span.val {
+            color: #111;
+            font-weight: 500;
+        }
+
+        .divider {
+            border: none;
+            border-top: 1px solid var(--border);
+            margin: 16px 0;
+        }
+
+        .frustration-label {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 10px;
+        }
+
+        .frustration-tag {
+            display: inline-block;
+            background: rgba(0, 0, 0, 0.04);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            color: #333;
+            font-size: 11px;
+            padding: 3px 9px;
+            border-radius: 5px;
+            margin: 3px 2px 3px 0;
+        }
+
+        /* RIGHT CARDS */
+        .right-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .info-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 24px 26px;
+            transition: border-color 0.22s;
+        }
+
+        .info-card:hover {
+            border-color: rgba(0, 0, 0, 0.22);
+        }
+
+        .card-label {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .card-label .dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #111;
+        }
+
+        .quote-block {
+            font-style: italic;
+            font-size: 0.97rem;
+            line-height: 1.65;
+            border-left: 3px solid #111;
+            padding-left: 14px;
+            font-weight: 300;
+        }
+
+        .goal-row {
+            margin-bottom: 14px;
+        }
+
+        .goal-top {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.83rem;
+            margin-bottom: 5px;
+            color: #444;
+        }
+
+        .goal-bar-bg {
+            height: 5px;
+            background: #eee;
+            border-radius: 100px;
+            overflow: hidden;
+        }
+
+        .goal-bar-fill {
+            height: 100%;
+            border-radius: 100px;
+            background: linear-gradient(90deg, #111, #777);
+            width: 0;
+            transition: width 1s ease;
+        }
+
+        ul.clean-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+        }
+
+        ul.clean-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 9px;
+            font-size: 0.88rem;
+            line-height: 1.5;
+            color: #444;
+        }
+
+        ul.clean-list li::before {
+            content: '→';
+            color: #111;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        .fit-row {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            padding: 11px 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.88rem;
+        }
+
+        .fit-row:last-child {
+            border-bottom: none;
+        }
+
+        .fit-icon {
+            width: 34px;
+            height: 34px;
+            border-radius: 9px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            flex-shrink: 0;
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        .fit-text {
+            color: #444;
+            line-height: 1.4;
+        }
+
+        .fit-text strong {
+            color: #111;
+            display: block;
+            font-size: 0.85rem;
+            margin-bottom: 2px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* ===== PRICING ===== */
+        .pricing-header {
+            text-align: center;
+            margin-bottom: 52px;
+        }
+
+        .billing-toggle {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            padding: 6px 8px 6px 18px;
+            margin-top: 28px;
+            font-size: 0.85rem;
+            color: #555;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 600;
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 44px;
+            height: 24px;
+            cursor: pointer;
+        }
+
+        .toggle-switch input {
+            display: none;
+        }
+
+        .toggle-track {
+            width: 44px;
+            height: 24px;
+            background: #ddd;
+            border-radius: 100px;
+            transition: background 0.25s;
+            display: block;
+            cursor: pointer;
+        }
+
+        .toggle-thumb {
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 18px;
+            height: 18px;
+            background: #fff;
+            border-radius: 50%;
+            transition: transform 0.25s;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+            pointer-events: none;
+        }
+
+        input:checked+.toggle-track {
+            background: #111;
+        }
+
+        input:checked~.toggle-thumb {
+            transform: translateX(20px);
+        }
+
+        .save-badge {
+            background: #111;
+            color: #fff;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            padding: 3px 9px;
+            border-radius: 100px;
+        }
+
+        /* PLAN CARDS */
+        .plans-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+            align-items: start;
+        }
+
+        @media (max-width: 900px) {
+            .plans-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 520px) {
+            .plans-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .plan-card {
+            background: var(--card);
+            border: 1.5px solid var(--border);
+            border-radius: 22px;
+            padding: 28px 22px 26px;
+            position: relative;
+            transition: box-shadow 0.22s, border-color 0.22s;
+        }
+
+        .plan-card:hover {
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+            border-color: #bbb;
+        }
+
+        .plan-card.featured {
+            border-color: #111;
+            background: #111;
+            color: #fff;
+        }
+
+        .plan-card.featured .plan-price-sub,
+        .plan-card.featured .plan-desc,
+        .plan-card.featured .feature-item,
+        .plan-card.featured .feature-group-label {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .plan-card.featured .feature-item.included::before {
+            color: #fff;
+        }
+
+        .plan-card.featured .feature-item.not-included {
+            color: rgba(255, 255, 255, 0.25);
+        }
+
+        .plan-card.featured .feature-item.not-included::before {
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .plan-card.featured .feature-divider {
+            border-color: rgba(255, 255, 255, 0.12);
+        }
+
+        .plan-card.featured .plan-badge {
+            background: rgba(255, 255, 255, 0.12);
+            color: #fff;
+        }
+
+        .plan-card.featured .plan-cta {
+            background: #fff;
+            color: #111;
+        }
+
+        .plan-card.featured .plan-cta:hover {
+            background: #e8e8e8;
+        }
+
+        .plan-card.featured .original-price {
+            color: rgba(255, 255, 255, 0.35);
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: -13px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #111;
+            color: #fff;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 4px 14px;
+            border-radius: 100px;
+            white-space: nowrap;
+        }
+
+        .plan-card.featured .popular-badge {
+            background: #fff;
+            color: #111;
+        }
+
+        .plan-badge {
+            display: inline-block;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            background: rgba(0, 0, 0, 0.05);
+            color: #555;
+            padding: 3px 10px;
+            border-radius: 100px;
+            margin-bottom: 16px;
+        }
+
+        .plan-name {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 800;
+            margin-bottom: 6px;
+        }
+
+        .plan-desc {
+            font-size: 0.8rem;
+            color: #666;
+            line-height: 1.5;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+
+        .plan-price {
+            margin-bottom: 20px;
+        }
+
+        .plan-price-main {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 800;
+            line-height: 1;
+        }
+
+        .plan-price-main sup {
+            font-size: 1rem;
+            vertical-align: super;
+            font-weight: 700;
+        }
+
+        .plan-price-sub {
+            font-size: 0.78rem;
+            color: #888;
+            margin-top: 4px;
+            font-weight: 400;
+        }
+
+        .original-price {
+            font-size: 0.82rem;
+            color: #aaa;
+            text-decoration: line-through;
+            margin-top: 2px;
+        }
+
+        .discount-chip {
+            display: inline-block;
+            background: #f0f0ec;
+            color: #111;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 100px;
+            margin-left: 6px;
+            vertical-align: middle;
+        }
+
+        .plan-card.featured .discount-chip {
+            background: rgba(255, 255, 255, 0.15);
+            color: #fff;
+        }
+
+        .plan-cta {
+            display: block;
+            width: 100%;
+            background: #111;
+            color: #fff;
+            font-family: 'Nunito', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            padding: 12px;
+            border: none;
+            border-radius: 100px;
+            cursor: pointer;
+            text-align: center;
+            margin-bottom: 22px;
+            transition: background 0.2s;
+        }
+
+        .plan-cta:hover {
+            background: #333;
+        }
+
+        .plan-cta.outline {
+            background: transparent;
+            border: 1.5px solid #ddd;
+            color: #111;
+        }
+
+        .plan-cta.outline:hover {
+            border-color: #111;
+            background: rgba(0, 0, 0, 0.03);
+        }
+
+        .feature-group-label {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 9.5px;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #aaa;
+            margin: 14px 0 8px;
+        }
+
+        .feature-divider {
+            border: none;
+            border-top: 1px solid var(--border);
+            margin: 12px 0;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            font-size: 0.8rem;
+            line-height: 1.45;
+            color: #333;
+            margin-bottom: 7px;
+            padding-left: 0;
+        }
+
+        .feature-item::before {
+            content: '✓';
+            color: #111;
+            font-weight: 700;
+            flex-shrink: 0;
+            margin-top: 0px;
+            font-size: 0.8rem;
+        }
+
+        .feature-item.not-included {
+            color: #bbb;
+        }
+
+        .feature-item.not-included::before {
+            content: '–';
+            color: #ccc;
+            font-weight: 400;
+        }
+
+        .feature-item .coming-soon {
+            font-size: 0.7rem;
+            color: #888;
+            font-style: italic;
+            white-space: nowrap;
+        }
+
+        .plan-card.featured .feature-item {
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .inherited-note {
+            font-size: 0.75rem;
+            color: #888;
+            font-style: italic;
+            margin-bottom: 10px;
+            padding-left: 2px;
+        }
+
+        .plan-card.featured .inherited-note {
+            color: rgba(255, 255, 255, 0.45);
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(18px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+
+        <div class="header">
+            <div class="badge">Mexuri · Strategy Docs</div>
+            <h1>Personas &amp; <span>Pricing</span></h1>
+            <p class="subtitle">Who Mexuri is built for — and what it costs to unlock their potential.</p>
+        </div>
+
+        <div class="nav-tabs">
+            <button class="nav-btn active" onclick="switchSection('personas')">Customer Personas</button>
+            <button class="nav-btn" onclick="switchSection('pricing')">Pricing Plans</button>
+        </div>
+
+        <!-- ===================== PERSONAS ===================== -->
+        <div class="section active" id="sec-personas">
+
+            <div class="tabs">
+                <button class="tab-btn active" onclick="switchTab(0)">The Idea Trapper</button>
+                <button class="tab-btn" onclick="switchTab(1)">The Solo Builder</button>
+                <button class="tab-btn" onclick="switchTab(2)">The Growing Team Lead</button>
+            </div>
+
+            <!-- PERSONA 1: Idea Trapper -->
+            <div class="persona-panel active" id="panel-0">
+                <div class="persona-grid">
+                    <div class="persona-identity">
+                        <img class="avatar-img"
+                            src="https://res.cloudinary.com/dbrjr5zqp/image/upload/v1772776920/__11_a2tagh.jpg"
+                            alt="Idea Trapper persona" />
+                        <div class="identity-body">
+                            <div class="persona-name">New Founders</div>
+                            <div class="persona-role">The Idea Trapper</div>
+                            <div class="identity-row"><span class="iicon">👤</span> Age: <span class="val">16–25</span>
+                            </div>
+                            <div class="identity-row"><span class="iicon">💼</span> Stage: <span class="val">Pre-revenue
+                                    / MVP</span></div>
+                            <div class="identity-row"><span class="iicon">🌍</span> Location: <span class="val">Lagos,
+                                    Nairobi, London</span></div>
+                            <div class="identity-row"><span class="iicon">💸</span> Budget: <span class="val">$0–$200/mo
+                                    tools</span></div>
+                            <div class="identity-row"><span class="iicon">🧠</span> Tech: <span
+                                    class="val">Moderate</span></div>
+                            <hr class="divider">
+                            <div class="frustration-label">Core Frustrations</div>
+                            <span class="frustration-tag">Imposter syndrome</span>
+                            <span class="frustration-tag">Paralysis by analysis</span>
+                            <span class="frustration-tag">No marketing knowledge</span>
+                            <span class="frustration-tag">Alone &amp; overwhelmed</span>
+                        </div>
+                    </div>
+                    <div class="right-stack">
+                        <div class="info-card">
+                            <div class="card-label"><span class="dot"></span>Voice of Customer</div>
+                            <p class="quote-block">"I built the product but I have no clue how to get anyone to see it.
+                                I feel like everyone else just knows things I don't. I can't afford to hire anyone, so
+                                it's just me — staring at a blank Notion page."</p>
+                        </div>
+                        <div class="info-card">
+                            <div class="card-label"><span class="dot"></span>Goals &amp; Motivations</div>
+                            <div class="goal-row">
+                                <div class="goal-top"><span>Get first 100 users</span><span>95%</span></div>
+                                <div class="goal-bar-bg">
+                                    <div class="goal-bar-fill" data-width="95"></div>
+                                </div>
+                            </div>
+                            <div class="goal-row">
+                                <div class="goal-top"><span>Validate the idea quickly</span><span>88%</span></div>
+                                <div class="goal-bar-bg">
+                                    <div class="goal-bar-fill" data-width="88"></div>
+                                </div>
+                            </div>
+                            <div class="goal-row">
+                                <div class="goal-top"><span>Learn to market on own</span><span>75%</span></div>
+                                <div class="goal-bar-bg">
+                                    <div class="goal-bar-fill" data-width="75"></div>
+                                </div>
+                            </div>
+                            <div class="goal-row">
+                                <div class="goal-top"><span>Stop feeling like a fraud</span><span>90%</span></div>
+                                <div class="goal-bar-bg">
+                                    <div class="goal-bar-fill" data-width="90"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="info-card">
+                            <div class="card-label"><span class="dot"></span>How Mexuri Helps</div>
+                            <div class="fit-row">
+                                <div class="fit-icon">✍️</div>
+                                <div class="fit-text"><strong>Veya AI – Content Agent</strong>Drafts launch posts,
+                                    landing copy, and SEO articles — no experience needed.</div>
+                            </div>
+                            <div class="fit-row">
+                                <div class="fit-icon">📣</div>
+                                <div class="fit-text"><strong>Halo AI – Marketing Agent</strong>Builds a go-to-market
+                                    strategy Jordan can actually execute alone.</div>
+                            </div>
+                            <div class="fit-row">
+                                <div class="fit-icon">🔬</div>
+                                <div class="fit-text"><strong>Harold AI – Research Agent</strong>Finds ICP, competitors,
+                                    and trends so Jordan sounds like they know the space.</div>
+                            </div>
+                        </div>
+                        <div class="info-card">
+                            <div class="card-label"><span class="dot"></span>Buying Triggers</div>
+                            <ul class="clean-list">
+                                <li>Sees another founder ship fast using AI tools</li>
+                                <li>Hits a wall after weeks of no traction</li>
+                                <li>Learns Mexuri replaces 3+ subscriptions they can't afford</li>
+                                <li>Free trial shows immediate, tangible output in minutes</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PERSONA 2: Solo Builder -->
+            <div class="persona-panel" id="panel-1">
+                <div class="persona-grid">
+                    <div class="persona-identity">
+                        <img class="avatar-img"
+                            src="https://res.cloudinary.com/dbrjr5zqp/image/upload/v1772776394/Confident_umtbbm.jpg"
+                            alt="Solo Builder persona" />
+                        <div class="identity-body">
+                            <div class="persona-name">Priya M.</div>
+                            <div class="persona-role">The Solo Builder</div>
+                            <div class="identity-row"><span class="iicon">👤</span> Age: <span class="val">26–35</span>
+                            </div>
+                            <div class="identity-row"><span class="iicon">💼</span> Stage: <span class="val">Early
+                                    revenue, solo</span></div>
+                            <div class="identity-row"><span class="iicon">🌍</span> Location: <span class="val">Remote,
+                                    global</span></div>
+                            <div class="identity-row"><span class="iicon">💸</span> Budget: <span
+                                    class="val">$200–$800/mo tools</span></div>
+                            <div class="identity-row"><span class="iicon">🧠</span> Tech: <span class="val">High</span>
+                            </div>
+                            <hr class="divider">
+                            <div class="frustration-label">Core Frustrations</div>
+                            <span class="frustration-tag">Wearing 10 hats</span>
+                            <span class="frustration-tag">Context-switching burnout</span>
+                            <span class="frustration-tag">Tools don't talk to each other</span>
+                            <span class="frustration-tag">Can't scale alone</span>
+                        </div>
+                    </div>
+                    <div class="right-stack">
+                        <div class="info-card">
+                            <div class="card-label"><span class="dot"></span>Voice of Customer</div>
+                            <p class="quote-block">"I'm doing customer support, writing blogs, running ads, and still
+                                trying to build new features. I'm making money but I'm drowning. I need leverage, not
+                                more apps — I need one thing that just works."</p>
+                        </div>
+                        <div class="info-card">
+                            <div class="card-label"><span class="dot"></span>Goals &amp; Motivations</div>
+                            <div class="goal-row">
+                                <div class="goal-top"><span>Reclaim 20+ hrs/week</span><span>92%</span></div>
+                                <div class="goal-bar-bg">
+                                    <div class="goal-bar-fill" data-width="92"></div>
+                                </div>
+                            </div>
+                            <div class="goal-row">
+                                <div class="goal-top"><span>Grow MRR without hiring</span><span>85%</span></div>
+                                <div class="goal-bar-bg">
+                                    <div class="goal-bar-fill" data-width="85"></div>
+                                </div>
+                            </div>
+                            <div class="goal-row">
+                                <div class="goal-top"><span>Build a consistent brand voice</span><span>70%</span></div>
+                                <div class="goal-bar-bg">
+                                    <div class="goal-bar-fill" data-width="70"></div>
+                                </div>
+                            </div>
+                            <div class="goal-row">
+                                <div class="goal-top"><span>Stop paying for 8 tools</span><span>80%</span></div>
+                                <div class="goal-bar-bg">
+                                    <div class="goal-bar-fill" data-width="80"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="info-card">
+                            <div class="card-label"><span class="dot"></span>How Mexuri Helps</div>
+                            <div class="fit-row">
+                                <div class="fit-icon">🌐</div>
+                                <div class="fit-text"><strong>Synk AI – Web Dev Agent</strong>Handles site updates,
+                                    landing pages, and A/B tests without touching code.</div>
+                            </div>
+                            <div class="fit-row">
+                                <div class="fit-icon">📊</div>
+                                <div class="fit-text"><strong>Atlas AI – Strategy Agent</strong>Sets quarterly
+                                    priorities so Priya focuses only on highest-leverage work.</div>
+                            </div>
+                            <div class="fit-row">
+                                <div class="fit-icon">✍️</div>
+                                <div class="fit-text"><strong>Veya AI – Content Agent</strong>Produces on-brand content
+                                    at scale, freeing hours every week.</div>
+                            </div>
+                        </div>
+                        <div class="info-card">
+                            <div class="card-label"><span class="dot"></span>Buying Triggers</div>
+                            <ul class="clean-list">
+                                <li>Calculates ROI: Mexuri costs less than one VA</li>
+                                <li>Discovers multi-agent workflow replaces 4 tools she pays for</li>
+                                <li>Hits growth ceiling and realizes she needs a leverage shift</li>
+                                <li>Sees a demo of agents working together end-to-end</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PERSONA 3: Growing Team Lead -->
+            <div class="persona-panel" id="panel-2">
+                <div class="persona-grid">
+                    <div class="persona-identity">
+                        <img class="avatar-img"
+                            src="https://res.cloudinary.com/dbrjr5zqp/image/upload/v1772776425/team_image_b5ydlx.jpg"
+                            alt="Team Lead persona" style="object-position: center top;" />
+                        <div class="identity-body">
+                            <div class="persona-name">Marcus T.</div>
+                            <div class="persona-role">The Growing Team Lead</div>
+                            <div class="identity-row"><span class="iicon">👤</span> Age: <span class="val">35–50</span>
+                            </div>
+                            <div class="identity-row"><span class="iicon">💼</span> Stage: <span class="val">Small team
+                                    (2–8 people)</span></div>
+                            <div class="identity-row"><span class="iicon">🌍</span> Location: <span class="val">US, UK,
+                                    EU</span></div>
+                            <div class="identity-row"><span class="iicon">💸</span> Budget: <span class="val">$1k–$3k/mo
+                                    tools</span></div>
+                            <div class="identity-row"><span class="iicon">🧠</span> Tech: <span
+                                    class="val">Medium-High</span></div>
+                            <hr class="divider">
+                            <div class="frustration-label">Core Frustrations</div>
+                            <span class="frustration-tag">Team output is inconsistent</span>
+                            <span class="frustration-tag">Onboarding is slow</span>
+                            <span class="frustration-tag">Quality control nightmare</span>
+                            <span class="frustration-tag">Everyone using different tools</span>
+                        </div>
+                    </div>
+                    <div class="right-stack">
+                        <div class="info-card">
+                            <div class="card-label"><span class="dot"></span>Voice of Customer</div>
+                            <p class="quote-block">"I hired a team but the output is all over the place. My designer
+                                doesn't talk to my marketer. My dev takes two weeks for what should take two days. I
+                                need my whole team working smarter, not just harder."</p>
+                        </div>
+                        <div class="info-card">
+                            <div class="card-label"><span class="dot"></span>Goals &amp; Motivations</div>
+                            <div class="goal-row">
+                                <div class="goal-top"><span>10x team output velocity</span><span>90%</span></div>
+                                <div class="goal-bar-bg">
+                                    <div class="goal-bar-fill" data-width="90"></div>
+                                </div>
+                            </div>
+                            <div class="goal-row">
+                                <div class="goal-top"><span>Standardise quality across roles</span><span>82%</span>
+                                </div>
+                                <div class="goal-bar-bg">
+                                    <div class="goal-bar-fill" data-width="82"></div>
+                                </div>
+                            </div>
+                            <div class="goal-row">
+                                <div class="goal-top"><span>Reduce tool sprawl</span><span>75%</span></div>
+                                <div class="goal-bar-bg">
+                                    <div class="goal-bar-fill" data-width="75"></div>
+                                </div>
+                            </div>
+                            <div class="goal-row">
+                                <div class="goal-top"><span>Scale without more headcount</span><span>88%</span></div>
+                                <div class="goal-bar-bg">
+                                    <div class="goal-bar-fill" data-width="88"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="info-card">
+                            <div class="card-label"><span class="dot"></span>How Mexuri Helps</div>
+                            <div class="fit-row">
+                                <div class="fit-icon">🤖</div>
+                                <div class="fit-text"><strong>All Agents as Team Tools</strong>Each team member gets the
+                                    right AI agent for their role, reducing bottlenecks.</div>
+                            </div>
+                            <div class="fit-row">
+                                <div class="fit-icon">📋</div>
+                                <div class="fit-text"><strong>Harold + Atlas AI – Strategy</strong>Aligns the whole team
+                                    on priorities and outputs in one shared workspace.</div>
+                            </div>
+                            <div class="fit-row">
+                                <div class="fit-icon">⚡</div>
+                                <div class="fit-text"><strong>Speed Multiplier</strong>Devs, marketers, and writers all
+                                    ship 2–5x faster with AI co-pilots.</div>
+                            </div>
+                        </div>
+                        <div class="info-card">
+                            <div class="card-label"><span class="dot"></span>Buying Triggers</div>
+                            <ul class="clean-list">
+                                <li>Team misses a launch deadline due to scattered workflows</li>
+                                <li>Competitor ships faster with a smaller team</li>
+                                <li>CFO asks why the tool stack costs $4k/mo with weak results</li>
+                                <li>Sees Mexuri pitched as a "team OS" not just an AI tool</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- /sec-personas -->
+
+        <!-- ===================== PRICING ===================== -->
+        <div class="section" id="sec-pricing">
+            <div class="pricing-header">
+                <div class="badge">Mexuri · Plans</div>
+                <h1>Simple, <span>Honest Pricing</span></h1>
+                <p class="subtitle">Start free. Scale when you're ready. Every plan unlocks the tools your stage
+                    actually needs.</p>
+
+                <!-- Location row -->
+                <div id="location-row"
+                    style="margin-top:24px; opacity:0; transition: opacity 0.4s ease; display:flex; align-items:center; justify-content:center; gap:12px; flex-wrap:wrap;">
+                    <span style="font-size:0.82rem; color:#888; font-family:'Poppins',sans-serif;">Prices shown
+                        for</span>
+                    <select id="country-select" style="
+                        font-family:'Nunito',sans-serif; font-size:13px; font-weight:700;
+                        border:1.5px solid #ddd; border-radius:100px; padding:6px 14px;
+                        background:#fff; color:#111; cursor:pointer; outline:none;
+                        appearance:none; -webkit-appearance:none;
+                        background-image: url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2212%22 height=%2212%22 viewBox=%220 0 12 12%22><path fill=%22%23555%22 d=%22M6 8L1 3h10z%22/></svg>');
+                        background-repeat: no-repeat; background-position: right 12px center;
+                        padding-right: 32px;">
+                    </select>
+                    <span id="location-loading" style="font-size:0.78rem; color:#aaa; font-style:italic;">Detecting your
+                        location…</span>
+                    <span id="location-indicator"
+                        style="font-size:0.78rem; color:#888; font-family:'Poppins',sans-serif;"></span>
+                </div>
+
+                <!-- Billing toggle -->
+                <div class="billing-toggle" style="margin-top:16px;">
+                    Monthly
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="billing-toggle" checked onchange="toggleBilling()">
+                        <span class="toggle-track"></span>
+                        <span class="toggle-thumb"></span>
+                    </label>
+                    Yearly &nbsp;<span class="save-badge">SAVE UP TO 15%</span>
+                </div>
+            </div>
+
+            <div class="plans-grid">
+
+                <!-- FREE -->
+                <div class="plan-card">
+                    <div class="plan-badge">Free Forever</div>
+                    <div class="plan-name">Free</div>
+                    <div class="plan-desc">Get a feel for what AI-powered founding can do. No card needed.</div>
+                    <div class="plan-price">
+                        <div class="plan-price-main"><sup>$</sup>0</div>
+                        <div class="plan-price-sub">forever free</div>
+                    </div>
+                    <button class="plan-cta outline">Get Started Free</button>
+
+                    <div class="feature-group-label">✦ Veya AI — Content</div>
+                    <div class="feature-item">Character Design (3/mo)</div>
+                    <div class="feature-item">Image Generation (5/mo)</div>
+                    <div class="feature-item not-included">Scheduled Posting</div>
+                    <div class="feature-item not-included">A/B Testing</div>
+                    <div class="feature-item not-included">Multilingual Support</div>
+                    <div class="feature-item not-included">Video Generation <span class="coming-soon">soon</span></div>
+
+                    <hr class="feature-divider">
+                    <div class="feature-group-label">✦ Halo AI — Marketing</div>
+                    <div class="feature-item">Marketing Research (3/mo)</div>
+                    <div class="feature-item not-included">Target Audience Research</div>
+                    <div class="feature-item not-included">Vanity Metric Analysis</div>
+                    <div class="feature-item not-included">Brand Strategy &amp; Messaging</div>
+                    <div class="feature-item not-included">GTM Strategy</div>
+                    <div class="feature-item not-included">Email Listing</div>
+
+                    <hr class="feature-divider">
+                    <div class="feature-group-label">✦ Synk AI — Technical</div>
+                    <div class="feature-item not-included">Web Development</div>
+                    <div class="feature-item not-included">Traffic Monitoring</div>
+                    <div class="feature-item not-included">Trend Updating</div>
+                    <div class="feature-item not-included">Prompt Development</div>
+                </div>
+
+                <!-- IDEA PLAN -->
+                <div class="plan-card">
+                    <div class="plan-badge">For Idea Trappers</div>
+                    <div class="plan-name">Idea</div>
+                    <div class="plan-desc">Launch your idea with a full content and marketing co-pilot by your side.
+                    </div>
+                    <div class="plan-price">
+                        <div class="plan-price-main" id="idea-price"><sup>$</sup>12.50</div>
+                        <div class="plan-price-sub" id="idea-sub">per month, billed yearly</div>
+                        <div class="original-price" id="idea-orig">$166.67/yr without discount</div>
+                        <span class="discount-chip" id="idea-chip">10% OFF</span>
+                    </div>
+                    <button class="plan-cta">Start Idea Plan</button>
+
+                    <div class="inherited-note">Everything in Free, plus:</div>
+
+                    <div class="feature-group-label">✦ Veya AI — Content</div>
+                    <div class="feature-item">Character Design (unlimited)</div>
+                    <div class="feature-item">Image Generation (unlimited)</div>
+                    <div class="feature-item">Scheduled Posting</div>
+                    <div class="feature-item">A/B Testing</div>
+                    <div class="feature-item">Multilingual Support</div>
+                    <div class="feature-item not-included">Video Generation <span class="coming-soon">soon</span></div>
+
+                    <hr class="feature-divider">
+                    <div class="feature-group-label">✦ Halo AI — Marketing</div>
+                    <div class="feature-item">Marketing Research</div>
+                    <div class="feature-item">Target Audience Research</div>
+                    <div class="feature-item">Vanity Metric Analysis</div>
+                    <div class="feature-item">Brand Strategy &amp; Messaging</div>
+                    <div class="feature-item">GTM Strategy</div>
+                    <div class="feature-item">Email Listing</div>
+
+                    <hr class="feature-divider">
+                    <div class="feature-group-label">✦ Synk AI — Technical</div>
+                    <div class="feature-item not-included">Web Development</div>
+                    <div class="feature-item not-included">Traffic Monitoring</div>
+                    <div class="feature-item not-included">Trend Updating</div>
+                    <div class="feature-item not-included">Prompt Development</div>
+                </div>
+
+                <!-- BUILDER PLAN — FEATURED -->
+                <div class="plan-card featured">
+                    <div class="popular-badge">Most Popular</div>
+                    <div class="plan-badge">For Solo Builders</div>
+                    <div class="plan-name">Builder</div>
+                    <div class="plan-desc">Full access to content, marketing, and the technical stack — all in one.
+                    </div>
+                    <div class="plan-price">
+                        <div class="plan-price-main" id="hustler-price"><sup>$</sup>29.17</div>
+                        <div class="plan-price-sub" id="hustler-sub">per month, billed yearly</div>
+                        <div class="original-price" id="hustler-orig">$388.89/yr without discount</div>
+                        <span class="discount-chip" id="hustler-chip">10% OFF</span>
+                    </div>
+                    <button class="plan-cta">Start Builder Plan</button>
+
+                    <div class="inherited-note">Everything in Idea, plus:</div>
+
+                    <div class="feature-group-label">✦ Synk AI — Technical</div>
+                    <div class="feature-item">Web Development</div>
+                    <div class="feature-item">Traffic Monitoring &amp; Analysis</div>
+                    <div class="feature-item">Trend Updating</div>
+                    <div class="feature-item">Prompt Dev &amp; AI Coding</div>
+
+                    <hr class="feature-divider">
+                    <div class="feature-group-label">✦ Veya AI — Content</div>
+                    <div class="feature-item">Video Generation <span class="coming-soon">soon</span></div>
+
+                    <hr class="feature-divider">
+                    <div class="feature-group-label">✦ Priority Support</div>
+                    <div class="feature-item">Email &amp; chat priority queue</div>
+                    <div class="feature-item">Onboarding walkthrough</div>
+                </div>
+
+                <!-- TEAM PLAN -->
+                <div class="plan-card">
+                    <div class="plan-badge">For Teams</div>
+                    <div class="plan-name">Team</div>
+                    <div class="plan-desc">Unlock research &amp; strategy intelligence. Built for founders with a crew.
+                    </div>
+                    <div class="plan-price">
+                        <div class="plan-price-main" id="team-price"><sup>$</sup>45.83</div>
+                        <div class="plan-price-sub" id="team-sub">per user/month, billed yearly</div>
+                        <div class="original-price" id="team-orig">$647.06/yr without discount</div>
+                        <span class="discount-chip" id="team-chip">15% OFF</span>
+                    </div>
+                    <button class="plan-cta">Start Team Plan</button>
+
+                    <div class="inherited-note">Everything in Builder, plus:</div>
+
+                    <div class="feature-group-label">✦ Harold AI — Research</div>
+                    <div class="feature-item">Deep Competitor Research</div>
+                    <div class="feature-item">Market Landscape Mapping</div>
+
+                    <hr class="feature-divider">
+                    <div class="feature-group-label">✦ Atlas AI — Strategy</div>
+                    <div class="feature-item">Business Strategy Development</div>
+                    <div class="feature-item">Quarterly Planning Engine</div>
+                    <div class="feature-item">Team Workflow Alignment</div>
+
+                    <hr class="feature-divider">
+                    <div class="feature-group-label">✦ Team Features</div>
+                    <div class="feature-item">Multi-seat access</div>
+                    <div class="feature-item">Shared workspace &amp; outputs</div>
+                    <div class="feature-item">Admin &amp; roles management</div>
+                    <div class="feature-item">Dedicated account manager</div>
+                </div>
+
+            </div>
+        </div><!-- /sec-pricing -->
+
+    </div>
+
+    <script>
+        // ─── COUNTRY PRICING TIERS ─────────────────────────────────────────────────
+        // Base USD prices: Idea $150/yr, Builder $350/yr, Team $550/yr (after discounts)
+        // Monthly = yearly / 12, orig = yearly / discount_factor
+        // Tiers apply a multiplier to the base USD prices, then convert to local currency.
+
+        const TIERS = {
+            // Tier A — Western markets (1.0x, USD/GBP/EUR/AUD/CAD)
+            US: { flag: '🇺🇸', name: 'United States', sym: '$', code: 'USD', mul: 1.00 },
+            GB: { flag: '🇬🇧', name: 'United Kingdom', sym: '£', code: 'GBP', mul: 0.80 },
+            DE: { flag: '🇩🇪', name: 'Germany', sym: '€', code: 'EUR', mul: 0.93 },
+            FR: { flag: '🇫🇷', name: 'France', sym: '€', code: 'EUR', mul: 0.93 },
+            NL: { flag: '🇳🇱', name: 'Netherlands', sym: '€', code: 'EUR', mul: 0.93 },
+            SE: { flag: '🇸🇪', name: 'Sweden', sym: 'kr', code: 'SEK', mul: 10.5 },
+            NO: { flag: '🇳🇴', name: 'Norway', sym: 'kr', code: 'NOK', mul: 10.8 },
+            CH: { flag: '🇨🇭', name: 'Switzerland', sym: 'Fr', code: 'CHF', mul: 0.90 },
+            AU: { flag: '🇦🇺', name: 'Australia', sym: 'A$', code: 'AUD', mul: 1.52 },
+            CA: { flag: '🇨🇦', name: 'Canada', sym: 'C$', code: 'CAD', mul: 1.36 },
+            NZ: { flag: '🇳🇿', name: 'New Zealand', sym: 'NZ$', code: 'NZD', mul: 1.65 },
+            SG: { flag: '🇸🇬', name: 'Singapore', sym: 'S$', code: 'SGD', mul: 1.35 },
+            JP: { flag: '🇯🇵', name: 'Japan', sym: '¥', code: 'JPY', mul: 150 },
+            AE: { flag: '🇦🇪', name: 'UAE', sym: 'د.إ', code: 'AED', mul: 3.67 },
+
+            // Tier B — Emerging markets (0.5x USD equivalent)
+            NG: { flag: '🇳🇬', name: 'Nigeria', sym: '₦', code: 'NGN', mul: 750, discount: 0.50 },
+            KE: { flag: '🇰🇪', name: 'Kenya', sym: 'KSh', code: 'KES', mul: 130, discount: 0.50 },
+            GH: { flag: '🇬🇭', name: 'Ghana', sym: 'GH₵', code: 'GHS', mul: 15, discount: 0.50 },
+            ZA: { flag: '🇿🇦', name: 'South Africa', sym: 'R', code: 'ZAR', mul: 18.5, discount: 0.50 },
+            EG: { flag: '🇪🇬', name: 'Egypt', sym: 'E£', code: 'EGP', mul: 48, discount: 0.50 },
+            ET: { flag: '🇪🇹', name: 'Ethiopia', sym: 'Br', code: 'ETB', mul: 55, discount: 0.50 },
+            RW: { flag: '🇷🇼', name: 'Rwanda', sym: 'RF', code: 'RWF', mul: 1300, discount: 0.50 },
+            TZ: { flag: '🇹🇿', name: 'Tanzania', sym: 'TSh', code: 'TZS', mul: 2500, discount: 0.50 },
+
+            // Tier C — South/Southeast Asia (0.35x USD equivalent)
+            IN: { flag: '🇮🇳', name: 'India', sym: '₹', code: 'INR', mul: 83, discount: 0.35 },
+            PK: { flag: '🇵🇰', name: 'Pakistan', sym: '₨', code: 'PKR', mul: 280, discount: 0.35 },
+            BD: { flag: '🇧🇩', name: 'Bangladesh', sym: '৳', code: 'BDT', mul: 110, discount: 0.35 },
+            PH: { flag: '🇵🇭', name: 'Philippines', sym: '₱', code: 'PHP', mul: 56, discount: 0.35 },
+            ID: { flag: '🇮🇩', name: 'Indonesia', sym: 'Rp', code: 'IDR', mul: 15800, discount: 0.35 },
+            VN: { flag: '🇻🇳', name: 'Vietnam', sym: '₫', code: 'VND', mul: 24500, discount: 0.35 },
+            MY: { flag: '🇲🇾', name: 'Malaysia', sym: 'RM', code: 'MYR', mul: 4.70, discount: 0.35 },
+            TH: { flag: '🇹🇭', name: 'Thailand', sym: '฿', code: 'THB', mul: 35, discount: 0.35 },
+
+            // Tier D — Latin America (0.45x USD equivalent)
+            BR: { flag: '🇧🇷', name: 'Brazil', sym: 'R$', code: 'BRL', mul: 5.0, discount: 0.45 },
+            MX: { flag: '🇲🇽', name: 'Mexico', sym: 'MX$', code: 'MXN', mul: 17, discount: 0.45 },
+            CO: { flag: '🇨🇴', name: 'Colombia', sym: 'COP', code: 'COP', mul: 3900, discount: 0.45 },
+            AR: { flag: '🇦🇷', name: 'Argentina', sym: 'ARS', code: 'ARS', mul: 900, discount: 0.45 },
+            CL: { flag: '🇨🇱', name: 'Chile', sym: 'CLP', code: 'CLP', mul: 950, discount: 0.45 },
+        };
+
+        // Base USD prices (post-discount, yearly)
+        const BASE = { idea: 150, hustler: 350, team: 550 };
+
+        // Default to US if country not in list
+        let currentCountry = 'US';
+
+        function calcPrices(countryCode, yearly) {
+            const tier = TIERS[countryCode] || TIERS['US'];
+            const priceMul = (tier.discount || 1.0) * tier.mul;
+            const results = {};
+
+            const plans = [
+                { key: 'idea', base: BASE.idea, discFactor: 0.90, label: 'per month, billed yearly', labelMo: 'per month, billed monthly' },
+                { key: 'hustler', base: BASE.hustler, discFactor: 0.90, label: 'per month, billed yearly', labelMo: 'per month, billed monthly' },
+                { key: 'team', base: BASE.team, discFactor: 0.85, label: 'per user/month, billed yearly', labelMo: 'per user/month, billed monthly' },
+            ];
+
+            plans.forEach(({ key, base, discFactor, label, labelMo }) => {
+                const yearlyUSD = base; // already discounted
+                const origUSD = base / discFactor;
+                const monthlyUSD = origUSD / 12;
+
+                const localYearly = yearlyUSD * priceMul;
+                const localOrig = origUSD * priceMul;
+                const localMonthly = monthlyUSD * priceMul;
+
+                const sym = tier.sym;
+                const decimals = localYearly > 500 ? 0 : 2;
+
+                const fmt = (n) => {
+                    const rounded = decimals === 0 ? Math.round(n) : Math.round(n * 100) / 100;
+                    return sym + rounded.toLocaleString('en-US', { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
+                };
+
+                const discPct = key === 'team' ? '15% OFF' : '10% OFF';
+
+                if (yearly) {
+                    results[key] = {
+                        main: fmt(localYearly / 12),
+                        sub: label + ' (' + fmt(localYearly) + '/yr)',
+                        orig: fmt(localOrig) + '/yr without discount',
+                        chip: discPct
+                    };
+                } else {
+                    results[key] = {
+                        main: fmt(localMonthly),
+                        sub: labelMo,
+                        orig: '',
+                        chip: ''
+                    };
+                }
+            });
+
+            return results;
+        }
+
+        function applyPrices(countryCode) {
+            currentCountry = countryCode;
+            const yearly = document.getElementById('billing-toggle').checked;
+            const prices = calcPrices(countryCode, yearly);
+            const tier = TIERS[countryCode] || TIERS['US'];
+
+            ['idea', 'hustler', 'team'].forEach(plan => {
+                const p = prices[plan];
+                const mainEl = document.getElementById(plan + '-price');
+                // Format main price — put symbol as superscript prefix if it's $ £ € etc.
+                mainEl.innerHTML = '<sup>' + tier.sym + '</sup>' + p.main.replace(tier.sym, '');
+                document.getElementById(plan + '-sub').textContent = p.sub;
+                document.getElementById(plan + '-orig').textContent = p.orig;
+                const chip = document.getElementById(plan + '-chip');
+                chip.textContent = p.chip;
+                chip.style.display = p.chip ? 'inline-block' : 'none';
+            });
+
+            // Update location indicator
+            const locEl = document.getElementById('location-indicator');
+            if (locEl) locEl.textContent = tier.flag + ' ' + tier.name + ' · ' + tier.code;
+        }
+
+        function toggleBilling() {
+            applyPrices(currentCountry);
+        }
+
+        // ─── COUNTRY SELECTOR UI ───────────────────────────────────────────────────
+        function buildCountrySelector() {
+            const sel = document.getElementById('country-select');
+            if (!sel) return;
+            // Group by region
+            const regions = [
+                { label: '🌎 Americas', codes: ['US', 'CA', 'BR', 'MX', 'CO', 'AR', 'CL'] },
+                { label: '🌍 Europe', codes: ['GB', 'DE', 'FR', 'NL', 'SE', 'NO', 'CH'] },
+                { label: '🌍 Africa', codes: ['NG', 'KE', 'GH', 'ZA', 'EG', 'ET', 'RW', 'TZ'] },
+                { label: '🌏 Asia-Pacific', codes: ['SG', 'JP', 'AU', 'NZ', 'IN', 'PK', 'BD', 'PH', 'ID', 'VN', 'MY', 'TH'] },
+                { label: '🌏 Middle East', codes: ['AE'] },
+            ];
+            regions.forEach(r => {
+                const og = document.createElement('optgroup');
+                og.label = r.label;
+                r.codes.forEach(c => {
+                    if (!TIERS[c]) return;
+                    const opt = document.createElement('option');
+                    opt.value = c;
+                    opt.textContent = TIERS[c].flag + ' ' + TIERS[c].name;
+                    if (c === currentCountry) opt.selected = true;
+                    og.appendChild(opt);
+                });
+                sel.appendChild(og);
+            });
+            sel.addEventListener('change', e => applyPrices(e.target.value));
+        }
+
+        // ─── IP GEOLOCATION ────────────────────────────────────────────────────────
+        async function detectCountry() {
+            try {
+                const res = await fetch('https://ipapi.co/json/');
+                const data = await res.json();
+                const code = data.country_code;
+                if (TIERS[code]) {
+                    currentCountry = code;
+                    const sel = document.getElementById('country-select');
+                    if (sel) sel.value = code;
+                }
+            } catch (e) { /* silently fall back to US */ }
+            applyPrices(currentCountry);
+            document.getElementById('location-loading').style.display = 'none';
+            document.getElementById('location-row').style.opacity = '1';
+        }
+
+        // ─── SECTION / PERSONA SWITCHING ──────────────────────────────────────────
+        function switchSection(sec) {
+            document.querySelectorAll('.nav-btn').forEach((b, i) => {
+                b.classList.toggle('active', (i === 0 && sec === 'personas') || (i === 1 && sec === 'pricing'));
+            });
+            document.getElementById('sec-personas').classList.toggle('active', sec === 'personas');
+            document.getElementById('sec-pricing').classList.toggle('active', sec === 'pricing');
+            if (sec === 'personas') setTimeout(animateBars, 50);
+        }
+
+        function switchTab(idx) {
+            document.querySelectorAll('.tab-btn').forEach((b, i) => b.classList.toggle('active', i === idx));
+            document.querySelectorAll('.persona-panel').forEach((p, i) => p.classList.toggle('active', i === idx));
+            setTimeout(animateBars, 50);
+        }
+
+        function animateBars() {
+            document.querySelectorAll('.persona-panel.active .goal-bar-fill').forEach(bar => {
+                bar.style.width = bar.dataset.width + '%';
+            });
+        }
+
+        // ─── INIT ──────────────────────────────────────────────────────────────────
+        document.addEventListener('DOMContentLoaded', () => {
+            buildCountrySelector();
+            detectCountry();
+            setTimeout(animateBars, 300);
+        });
+    </script>
+</body>
+
+</html>
