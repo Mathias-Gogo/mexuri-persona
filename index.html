@@ -15,6 +15,18 @@
             --border: #e0e0db;
             --text: #111111;
             --muted: #888888;
+            --grid-line: rgba(0, 0, 0, 0.035);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #0e0e0e;
+                --card: #1a1a1a;
+                --border: #2a2a2a;
+                --text: #f0f0f0;
+                --muted: #777777;
+                --grid-line: rgba(255, 255, 255, 0.04);
+            }
         }
 
         * {
@@ -29,6 +41,7 @@
             font-family: 'Poppins', sans-serif;
             min-height: 100vh;
             overflow-x: hidden;
+            transition: background 0.3s ease, color 0.3s ease;
         }
 
         body::before {
@@ -36,8 +49,8 @@
             position: fixed;
             inset: 0;
             background-image:
-                linear-gradient(rgba(0, 0, 0, 0.035) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 0, 0, 0.035) 1px, transparent 1px);
+                linear-gradient(var(--grid-line) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
             background-size: 48px 48px;
             pointer-events: none;
             z-index: 0;
@@ -1244,6 +1257,396 @@
         .ov-cta-btn--ghost:hover {
             background: rgba(255, 255, 255, 0.1);
         }
+
+        /* ── DARK MODE: auto via system preference ── */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background: var(--bg);
+                color: var(--text);
+            }
+
+            .nav-btn {
+                border-color: #444;
+                color: #ddd;
+            }
+
+            .nav-btn.active {
+                background: #fff;
+                color: #111;
+                border-color: #fff;
+            }
+
+            .nav-btn:hover:not(.active) {
+                background: rgba(255, 255, 255, 0.07);
+            }
+
+            h1,
+            .ov-hero-title,
+            .ov-agents-title,
+            .ov-who-title,
+            .ov-split-heading,
+            .plan-name,
+            .persona-name,
+            .ov-agent-name,
+            .ov-who-name {
+                color: #f0f0f0;
+            }
+
+            h1 span,
+            .ov-hero-title span {
+                background: linear-gradient(90deg, #fff, #aaa);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+
+            .badge {
+                background: rgba(255, 255, 255, 0.07);
+                border-color: rgba(255, 255, 255, 0.15);
+                color: #ccc;
+            }
+
+            .tab-btn {
+                background: #1a1a1a;
+                border-color: #333;
+                color: #888;
+            }
+
+            .tab-btn.active {
+                background: #fff;
+                border-color: #fff;
+                color: #111;
+            }
+
+            .tab-btn:hover:not(.active) {
+                border-color: #aaa;
+                color: #ccc;
+            }
+
+            .frustration-tag {
+                background: rgba(255, 255, 255, 0.05);
+                border-color: rgba(255, 255, 255, 0.1);
+                color: #bbb;
+            }
+
+            .goal-bar-fill {
+                background: linear-gradient(90deg, #fff, #888);
+            }
+
+            .goal-bar-bg {
+                background: #2a2a2a;
+            }
+
+            ul.clean-list li,
+            .fit-text {
+                color: #aaa;
+            }
+
+            ul.clean-list li::before,
+            .card-label .dot {
+                color: #fff;
+            }
+
+            .quote-block {
+                border-left-color: #fff;
+                color: #ccc;
+            }
+
+            .plan-card {
+                background: #1a1a1a;
+                border-color: #2a2a2a;
+            }
+
+            .plan-card.featured {
+                background: #fff;
+                color: #111;
+                border-color: #fff;
+            }
+
+            .plan-card.featured .plan-price-sub,
+            .plan-card.featured .plan-desc,
+            .plan-card.featured .feature-item,
+            .plan-card.featured .feature-group-label {
+                color: rgba(0, 0, 0, 0.5);
+            }
+
+            .plan-card.featured .feature-item {
+                color: #222;
+            }
+
+            .plan-card.featured .plan-cta {
+                background: #111;
+                color: #fff;
+            }
+
+            .plan-card.featured .popular-badge {
+                background: #111;
+                color: #fff;
+            }
+
+            .plan-card.featured .plan-badge {
+                background: rgba(0, 0, 0, 0.07);
+                color: #444;
+            }
+
+            .plan-card.featured .original-price {
+                color: rgba(0, 0, 0, 0.35);
+            }
+
+            .plan-card.featured .discount-chip {
+                background: rgba(0, 0, 0, 0.08);
+                color: #333;
+            }
+
+            .plan-card.featured .inherited-note {
+                color: rgba(0, 0, 0, 0.4);
+            }
+
+            .plan-cta {
+                background: #fff;
+                color: #111;
+            }
+
+            .plan-cta:hover {
+                background: #e0e0e0;
+            }
+
+            .plan-cta.outline {
+                background: transparent;
+                border-color: #444;
+                color: #ccc;
+            }
+
+            .plan-cta.outline:hover {
+                border-color: #aaa;
+                background: rgba(255, 255, 255, 0.05);
+            }
+
+            .plan-badge {
+                background: rgba(255, 255, 255, 0.07);
+                color: #888;
+            }
+
+            .plan-desc,
+            .plan-price-sub {
+                color: #666;
+            }
+
+            .feature-group-label {
+                color: #555;
+            }
+
+            .feature-item {
+                color: #aaa;
+            }
+
+            .feature-item::before {
+                color: #ccc;
+            }
+
+            .feature-item.not-included {
+                color: #3a3a3a;
+            }
+
+            .feature-item.not-included::before {
+                color: #333;
+            }
+
+            .feature-divider {
+                border-color: #2a2a2a;
+            }
+
+            .inherited-note {
+                color: #555;
+            }
+
+            .original-price {
+                color: #555;
+            }
+
+            .discount-chip {
+                background: #2a2a2a;
+                color: #aaa;
+            }
+
+            .info-card {
+                background: #1a1a1a;
+                border-color: #2a2a2a;
+            }
+
+            .persona-identity {
+                background: #1a1a1a;
+                border-color: #2a2a2a;
+            }
+
+            .avatar-img {
+                border-bottom-color: #2a2a2a;
+            }
+
+            .identity-row {
+                color: #666;
+            }
+
+            .identity-row .val {
+                color: #ccc;
+            }
+
+            .identity-row .iicon {
+                background: #222;
+            }
+
+            .persona-role {
+                color: #666;
+            }
+
+            .frustration-label {
+                color: #555;
+            }
+
+            .divider {
+                border-color: #2a2a2a;
+            }
+
+            .fit-icon {
+                background: rgba(255, 255, 255, 0.05);
+            }
+
+            .fit-text strong {
+                color: #ddd;
+            }
+
+            .fit-row {
+                border-bottom-color: #2a2a2a;
+            }
+
+            .popular-badge {
+                background: #fff;
+                color: #111;
+            }
+
+            .ov-split-card,
+            .ov-agent-card,
+            .ov-who-card {
+                background: #1a1a1a;
+                border-color: #2a2a2a;
+            }
+
+            .ov-split-label {
+                color: #666;
+            }
+
+            .ov-split-solution .ov-split-label {
+                color: #aaa;
+            }
+
+            .ov-checklist li {
+                color: #888;
+            }
+
+            .ov-checklist-check li::before {
+                color: #ccc;
+            }
+
+            .ov-hero-eyebrow {
+                color: #555;
+            }
+
+            .ov-hero-sub,
+            .ov-agents-sub,
+            .ov-who-desc,
+            .ov-agent-desc {
+                color: #777;
+            }
+
+            .ov-agent-role,
+            .ov-who-age {
+                color: #555;
+            }
+
+            .ov-agent-tag {
+                background: #111;
+                border-color: #2a2a2a;
+                color: #666;
+            }
+
+            .ov-stat-label {
+                color: #555;
+            }
+
+            .ov-stat-num {
+                color: #f0f0f0;
+            }
+
+            .ov-stat-divider {
+                background: #2a2a2a;
+            }
+
+            .ov-hero-stats {
+                background: #1a1a1a;
+                border-color: #2a2a2a;
+            }
+
+            .ov-cta-strip {
+                background: #fff;
+            }
+
+            .ov-cta-text {
+                color: #111;
+            }
+
+            .ov-cta-btn {
+                background: #111;
+                color: #fff;
+                border-color: #111;
+            }
+
+            .ov-cta-btn:hover {
+                background: #222;
+            }
+
+            .ov-cta-btn--ghost {
+                background: transparent;
+                color: #555;
+                border-color: #333;
+            }
+
+            .ov-cta-btn--ghost:hover {
+                background: rgba(0, 0, 0, 0.05);
+            }
+
+            .card-label {
+                color: #555;
+            }
+
+            .goal-top {
+                color: #888;
+            }
+
+            .subtitle {
+                color: #666;
+            }
+
+            #country-select {
+                background-color: #1a1a1a;
+                border-color: #333;
+                color: #ccc;
+                background-image: url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2212%22 height=%2212%22 viewBox=%220 0 12 12%22><path fill=%22%23aaa%22 d=%22M6 8L1 3h10z%22/></svg>');
+            }
+
+            .billing-toggle {
+                background: #1a1a1a;
+                border-color: #2a2a2a;
+                color: #888;
+            }
+
+            .save-badge {
+                background: #fff;
+                color: #111;
+            }
+
+            .toggle-track {
+                background: #333;
+            }
+        }
     </style>
 </head>
 
@@ -1850,6 +2253,8 @@
     </div>
 
     <script>
+
+
         const TIERS = {
             US: { flag: '🇺🇸', name: 'United States', sym: '$', code: 'USD', mul: 1.00 },
             GB: { flag: '🇬🇧', name: 'United Kingdom', sym: '£', code: 'GBP', mul: 0.80 },
@@ -1867,7 +2272,7 @@
             AE: { flag: '🇦🇪', name: 'UAE', sym: 'د.إ', code: 'AED', mul: 3.67 },
             NG: {
                 flag: '🇳🇬', name: 'Nigeria', sym: '₦', code: 'NGN', mul: 750, discount: 0.50,
-                fixed: { idea: 5500, hustler: 11500, team: 20000 }
+                fixed: { idea: 4500, hustler: 9500, team: 15000 }
             },
             KE: { flag: '🇰🇪', name: 'Kenya', sym: 'KSh', code: 'KES', mul: 130, discount: 0.50 },
             GH: { flag: '🇬🇭', name: 'Ghana', sym: 'GH₵', code: 'GHS', mul: 15, discount: 0.50 },
