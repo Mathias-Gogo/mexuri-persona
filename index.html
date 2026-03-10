@@ -51,7 +51,6 @@
             padding: 60px 24px 80px;
         }
 
-        /* NAV TABS (top-level: Personas / Pricing) */
         .nav-tabs {
             display: flex;
             gap: 8px;
@@ -84,7 +83,6 @@
             background: rgba(0, 0, 0, 0.05);
         }
 
-        /* SECTION */
         .section {
             display: none;
         }
@@ -94,7 +92,6 @@
             animation: fadeUp 0.4s ease both;
         }
 
-        /* HEADER */
         .header {
             text-align: center;
             margin-bottom: 56px;
@@ -140,7 +137,6 @@
             line-height: 1.7;
         }
 
-        /* PERSONA TABS */
         .tabs {
             display: flex;
             gap: 12px;
@@ -199,7 +195,6 @@
             }
         }
 
-        /* IDENTITY CARD */
         .persona-identity {
             background: var(--card);
             border: 1px solid var(--border);
@@ -291,7 +286,6 @@
             margin: 3px 2px 3px 0;
         }
 
-        /* RIGHT CARDS */
         .right-stack {
             display: flex;
             flex-direction: column;
@@ -427,7 +421,6 @@
             font-family: 'Montserrat', sans-serif;
         }
 
-        /* ===== PRICING ===== */
         .pricing-header {
             text-align: center;
             margin-bottom: 52px;
@@ -501,7 +494,6 @@
             border-radius: 100px;
         }
 
-        /* PLAN CARDS */
         .plans-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -795,11 +787,6 @@
             }
         }
 
-        /* ═══════════════════════════════════════════════════════
-     OVERVIEW SECTION STYLES
-  ═══════════════════════════════════════════════════════ */
-
-        /* HERO */
         .ov-hero {
             text-align: center;
             padding: 20px 0 64px;
@@ -880,7 +867,6 @@
             background: var(--border);
         }
 
-        /* SPLIT PROBLEM / SOLUTION */
         .ov-split {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -966,7 +952,6 @@
             font-weight: 700;
         }
 
-        /* AGENTS */
         .ov-agents-header {
             text-align: center;
             margin-bottom: 36px;
@@ -1136,7 +1121,6 @@
             white-space: nowrap;
         }
 
-        /* WHO IT'S FOR */
         .ov-who {
             margin-bottom: 72px;
             animation: fadeUp 0.7s 0.25s ease both;
@@ -1211,7 +1195,6 @@
             font-weight: 300;
         }
 
-        /* CTA STRIP */
         .ov-cta-strip {
             background: #111;
             border-radius: 20px;
@@ -1282,8 +1265,6 @@
 
         <!-- ===================== OVERVIEW ===================== -->
         <div class="section active" id="sec-overview">
-
-            <!-- HERO -->
             <div class="ov-hero">
                 <div class="ov-hero-eyebrow">The AI Platform for Solopreneurs</div>
                 <h2 class="ov-hero-title">Your one-person business,<br><span>running like a team of ten.</span></h2>
@@ -1302,7 +1283,6 @@
                 </div>
             </div>
 
-            <!-- PROBLEM / SOLUTION -->
             <div class="ov-split">
                 <div class="ov-split-card ov-split-problem">
                     <div class="ov-split-label">The Problem</div>
@@ -1328,7 +1308,6 @@
                 </div>
             </div>
 
-            <!-- AGENTS GRID -->
             <div class="ov-agents-header">
                 <div class="badge">The Crew</div>
                 <h3 class="ov-agents-title">Meet your five AI agents</h3>
@@ -1379,7 +1358,6 @@
                 </div>
             </div>
 
-            <!-- WHO IT'S FOR -->
             <div class="ov-who">
                 <div class="ov-who-label">
                     <div class="badge">Who It's For</div>
@@ -1410,26 +1388,22 @@
                 </div>
             </div>
 
-            <!-- CTA STRIP -->
             <div class="ov-cta-strip">
                 <p class="ov-cta-text">Ready to see plans and pricing?</p>
                 <button class="ov-cta-btn" onclick="switchSection('pricing')">View Pricing Plans →</button>
                 <button class="ov-cta-btn ov-cta-btn--ghost" onclick="switchSection('personas')">Explore Personas
                     →</button>
             </div>
-
-        </div><!-- /sec-overview -->
+        </div>
 
         <!-- ===================== PERSONAS ===================== -->
         <div class="section" id="sec-personas">
-
             <div class="tabs">
                 <button class="tab-btn active" onclick="switchTab(0)">The Idea Trapper</button>
                 <button class="tab-btn" onclick="switchTab(1)">The Solo Builder</button>
                 <button class="tab-btn" onclick="switchTab(2)">The Growing Team</button>
             </div>
 
-            <!-- PERSONA 1: Idea Trapper -->
             <div class="persona-panel active" id="panel-0">
                 <div class="persona-grid">
                     <div class="persona-identity">
@@ -1522,7 +1496,6 @@
                 </div>
             </div>
 
-            <!-- PERSONA 2: Solo Builder -->
             <div class="persona-panel" id="panel-1">
                 <div class="persona-grid">
                     <div class="persona-identity">
@@ -1615,7 +1588,6 @@
                 </div>
             </div>
 
-            <!-- PERSONA 3: Growing Team Lead -->
             <div class="persona-panel" id="panel-2">
                 <div class="persona-grid">
                     <div class="persona-identity">
@@ -1708,8 +1680,7 @@
                     </div>
                 </div>
             </div>
-
-        </div><!-- /sec-personas -->
+        </div>
 
         <!-- ===================== PRICING ===================== -->
         <div class="section" id="sec-pricing">
@@ -1719,27 +1690,18 @@
                 <p class="subtitle">Start free. Scale when you're ready. Every plan unlocks the tools your stage
                     actually needs.</p>
 
-                <!-- Location row -->
                 <div id="location-row"
                     style="margin-top:24px; opacity:0; transition: opacity 0.4s ease; display:flex; align-items:center; justify-content:center; gap:12px; flex-wrap:wrap;">
                     <span style="font-size:0.82rem; color:#888; font-family:'Poppins',sans-serif;">Prices shown
                         for</span>
-                    <select id="country-select" style="
-          font-family:'Nunito',sans-serif; font-size:13px; font-weight:700;
-          border:1.5px solid #ddd; border-radius:100px; padding:6px 14px;
-          background:#fff; color:#111; cursor:pointer; outline:none;
-          appearance:none; -webkit-appearance:none;
-          background-image: url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2212%22 height=%2212%22 viewBox=%220 0 12 12%22><path fill=%22%23555%22 d=%22M6 8L1 3h10z%22/></svg>');
-          background-repeat: no-repeat; background-position: right 12px center;
-          padding-right: 32px;
-        "></select>
+                    <select id="country-select"
+                        style="font-family:'Nunito',sans-serif; font-size:13px; font-weight:700; border:1.5px solid #ddd; border-radius:100px; padding:6px 14px; background:#fff; color:#111; cursor:pointer; outline:none; appearance:none; -webkit-appearance:none; background-image: url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2212%22 height=%2212%22 viewBox=%220 0 12 12%22><path fill=%22%23555%22 d=%22M6 8L1 3h10z%22/></svg>'); background-repeat: no-repeat; background-position: right 12px center; padding-right: 32px;"></select>
                     <span id="location-loading" style="font-size:0.78rem; color:#aaa; font-style:italic;">Detecting your
                         location…</span>
                     <span id="location-indicator"
                         style="font-size:0.78rem; color:#888; font-family:'Poppins',sans-serif;"></span>
                 </div>
 
-                <!-- Billing toggle -->
                 <div class="billing-toggle" style="margin-top:16px;">
                     Monthly
                     <label class="toggle-switch">
@@ -1763,7 +1725,6 @@
                         <div class="plan-price-sub">forever free</div>
                     </div>
                     <button class="plan-cta outline">Get Started Free</button>
-
                     <div class="feature-group-label">✦ Veya AI — Content</div>
                     <div class="feature-item">Character Design (3/mo)</div>
                     <div class="feature-item">Image Generation (5/mo)</div>
@@ -1771,7 +1732,6 @@
                     <div class="feature-item not-included">A/B Testing</div>
                     <div class="feature-item not-included">Multilingual Support</div>
                     <div class="feature-item not-included">Video Generation <span class="coming-soon">soon</span></div>
-
                     <hr class="feature-divider">
                     <div class="feature-group-label">✦ Halo AI — Marketing</div>
                     <div class="feature-item">Marketing Research (3/mo)</div>
@@ -1780,7 +1740,6 @@
                     <div class="feature-item not-included">Brand Strategy &amp; Messaging</div>
                     <div class="feature-item not-included">GTM Strategy</div>
                     <div class="feature-item not-included">Email Listing</div>
-
                     <hr class="feature-divider">
                     <div class="feature-group-label">✦ Synk AI — Technical</div>
                     <div class="feature-item not-included">Web Development</div>
@@ -1802,9 +1761,7 @@
                         <span class="discount-chip" id="idea-chip">10% OFF</span>
                     </div>
                     <button class="plan-cta">Start Idea Plan</button>
-
                     <div class="inherited-note">Everything in Free, plus:</div>
-
                     <div class="feature-group-label">✦ Veya AI — Content</div>
                     <div class="feature-item">Character Design (unlimited)</div>
                     <div class="feature-item">Image Generation (unlimited)</div>
@@ -1812,7 +1769,6 @@
                     <div class="feature-item">A/B Testing</div>
                     <div class="feature-item">Multilingual Support</div>
                     <div class="feature-item not-included">Video Generation <span class="coming-soon">soon</span></div>
-
                     <hr class="feature-divider">
                     <div class="feature-group-label">✦ Halo AI — Marketing</div>
                     <div class="feature-item">Marketing Research</div>
@@ -1821,7 +1777,6 @@
                     <div class="feature-item">Brand Strategy &amp; Messaging</div>
                     <div class="feature-item">GTM Strategy</div>
                     <div class="feature-item">Email Listing</div>
-
                     <hr class="feature-divider">
                     <div class="feature-group-label">✦ Synk AI — Technical</div>
                     <div class="feature-item not-included">Web Development</div>
@@ -1844,19 +1799,15 @@
                         <span class="discount-chip" id="hustler-chip">10% OFF</span>
                     </div>
                     <button class="plan-cta">Start Builder Plan</button>
-
                     <div class="inherited-note">Everything in Idea, plus:</div>
-
                     <div class="feature-group-label">✦ Synk AI — Technical</div>
                     <div class="feature-item">Web Development</div>
                     <div class="feature-item">Traffic Monitoring &amp; Analysis</div>
                     <div class="feature-item">Trend Updating</div>
                     <div class="feature-item">Prompt Dev &amp; AI Coding</div>
-
                     <hr class="feature-divider">
                     <div class="feature-group-label">✦ Veya AI — Content</div>
                     <div class="feature-item">Video Generation <span class="coming-soon">soon</span></div>
-
                     <hr class="feature-divider">
                     <div class="feature-group-label">✦ Priority Support</div>
                     <div class="feature-item">Email &amp; chat priority queue</div>
@@ -1876,19 +1827,15 @@
                         <span class="discount-chip" id="team-chip">15% OFF</span>
                     </div>
                     <button class="plan-cta">Start Team Plan</button>
-
                     <div class="inherited-note">Everything in Builder, plus:</div>
-
                     <div class="feature-group-label">✦ Harold AI — Research</div>
                     <div class="feature-item">Deep Competitor Research</div>
                     <div class="feature-item">Market Landscape Mapping</div>
-
                     <hr class="feature-divider">
                     <div class="feature-group-label">✦ Atlas AI — Strategy</div>
                     <div class="feature-item">Business Strategy Development</div>
                     <div class="feature-item">Quarterly Planning Engine</div>
                     <div class="feature-item">Team Workflow Alignment</div>
-
                     <hr class="feature-divider">
                     <div class="feature-group-label">✦ Team Features</div>
                     <div class="feature-item">Multi-seat access</div>
@@ -1898,18 +1845,12 @@
                 </div>
 
             </div>
-        </div><!-- /sec-pricing -->
+        </div>
 
     </div>
 
     <script>
-        // ─── COUNTRY PRICING TIERS ─────────────────────────────────────────────────
-        // Base USD prices: Idea $150/yr, Builder $350/yr, Team $550/yr (after discounts)
-        // Monthly = yearly / 12, orig = yearly / discount_factor
-        // Tiers apply a multiplier to the base USD prices, then convert to local currency.
-
         const TIERS = {
-            // Tier A — Western markets (1.0x, USD/GBP/EUR/AUD/CAD)
             US: { flag: '🇺🇸', name: 'United States', sym: '$', code: 'USD', mul: 1.00 },
             GB: { flag: '🇬🇧', name: 'United Kingdom', sym: '£', code: 'GBP', mul: 0.80 },
             DE: { flag: '🇩🇪', name: 'Germany', sym: '€', code: 'EUR', mul: 0.93 },
@@ -1924,9 +1865,10 @@
             SG: { flag: '🇸🇬', name: 'Singapore', sym: 'S$', code: 'SGD', mul: 1.35 },
             JP: { flag: '🇯🇵', name: 'Japan', sym: '¥', code: 'JPY', mul: 150 },
             AE: { flag: '🇦🇪', name: 'UAE', sym: 'د.إ', code: 'AED', mul: 3.67 },
-
-            // Tier B — Emerging markets (0.5x USD equivalent)
-            NG: { flag: '🇳🇬', name: 'Nigeria', sym: '₦', code: 'NGN', mul: 750, discount: 0.50 },
+            NG: {
+                flag: '🇳🇬', name: 'Nigeria', sym: '₦', code: 'NGN', mul: 750, discount: 0.50,
+                fixed: { idea: 5500, hustler: 11500, team: 20000 }
+            },
             KE: { flag: '🇰🇪', name: 'Kenya', sym: 'KSh', code: 'KES', mul: 130, discount: 0.50 },
             GH: { flag: '🇬🇭', name: 'Ghana', sym: 'GH₵', code: 'GHS', mul: 15, discount: 0.50 },
             ZA: { flag: '🇿🇦', name: 'South Africa', sym: 'R', code: 'ZAR', mul: 18.5, discount: 0.50 },
@@ -1934,8 +1876,6 @@
             ET: { flag: '🇪🇹', name: 'Ethiopia', sym: 'Br', code: 'ETB', mul: 55, discount: 0.50 },
             RW: { flag: '🇷🇼', name: 'Rwanda', sym: 'RF', code: 'RWF', mul: 1300, discount: 0.50 },
             TZ: { flag: '🇹🇿', name: 'Tanzania', sym: 'TSh', code: 'TZS', mul: 2500, discount: 0.50 },
-
-            // Tier C — South/Southeast Asia (0.35x USD equivalent)
             IN: { flag: '🇮🇳', name: 'India', sym: '₹', code: 'INR', mul: 83, discount: 0.35 },
             PK: { flag: '🇵🇰', name: 'Pakistan', sym: '₨', code: 'PKR', mul: 280, discount: 0.35 },
             BD: { flag: '🇧🇩', name: 'Bangladesh', sym: '৳', code: 'BDT', mul: 110, discount: 0.35 },
@@ -1944,8 +1884,6 @@
             VN: { flag: '🇻🇳', name: 'Vietnam', sym: '₫', code: 'VND', mul: 24500, discount: 0.35 },
             MY: { flag: '🇲🇾', name: 'Malaysia', sym: 'RM', code: 'MYR', mul: 4.70, discount: 0.35 },
             TH: { flag: '🇹🇭', name: 'Thailand', sym: '฿', code: 'THB', mul: 35, discount: 0.35 },
-
-            // Tier D — Latin America (0.45x USD equivalent)
             BR: { flag: '🇧🇷', name: 'Brazil', sym: 'R$', code: 'BRL', mul: 5.0, discount: 0.45 },
             MX: { flag: '🇲🇽', name: 'Mexico', sym: 'MX$', code: 'MXN', mul: 17, discount: 0.45 },
             CO: { flag: '🇨🇴', name: 'Colombia', sym: 'COP', code: 'COP', mul: 3900, discount: 0.45 },
@@ -1953,25 +1891,55 @@
             CL: { flag: '🇨🇱', name: 'Chile', sym: 'CLP', code: 'CLP', mul: 950, discount: 0.45 },
         };
 
-        // Base USD prices (post-discount, yearly)
         const BASE = { idea: 150, hustler: 350, team: 550 };
 
-        // Default to US if country not in list
         let currentCountry = 'US';
+
+        function formatLocal(sym, amount, decimals) {
+            const rounded = decimals === 0 ? Math.round(amount) : Math.round(amount * 100) / 100;
+            return sym + rounded.toLocaleString('en-US', { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
+        }
 
         function calcPrices(countryCode, yearly) {
             const tier = TIERS[countryCode] || TIERS['US'];
-            const priceMul = (tier.discount || 1.0) * tier.mul;
+            const sym = tier.sym;
             const results = {};
 
-            const plans = [
-                { key: 'idea', base: BASE.idea, discFactor: 0.90, label: 'per month, billed yearly', labelMo: 'per month, billed monthly' },
-                { key: 'hustler', base: BASE.hustler, discFactor: 0.90, label: 'per month, billed yearly', labelMo: 'per month, billed monthly' },
-                { key: 'team', base: BASE.team, discFactor: 0.85, label: 'per user/month, billed yearly', labelMo: 'per user/month, billed monthly' },
+            const planDefs = [
+                { key: 'idea', base: BASE.idea, discFactor: 0.90, label: 'per month, billed yearly', labelMo: 'per month, billed monthly', discPct: '10% OFF' },
+                { key: 'hustler', base: BASE.hustler, discFactor: 0.90, label: 'per month, billed yearly', labelMo: 'per month, billed monthly', discPct: '10% OFF' },
+                { key: 'team', base: BASE.team, discFactor: 0.85, label: 'per user/month, billed yearly', labelMo: 'per user/month, billed monthly', discPct: '15% OFF' },
             ];
 
-            plans.forEach(({ key, base, discFactor, label, labelMo }) => {
-                const yearlyUSD = base; // already discounted
+            planDefs.forEach(({ key, base, discFactor, label, labelMo, discPct }) => {
+
+                // ── NIGERIA: use fixed monthly prices ──────────────────────────
+                if (tier.fixed && tier.fixed[key] !== undefined) {
+                    const fixedMonthly = tier.fixed[key];
+                    const fixedYearly = fixedMonthly * 12;
+                    const origMonthly = Math.round(fixedMonthly / discFactor / 100) * 100; // round orig to nearest 100
+
+                    if (yearly) {
+                        results[key] = {
+                            main: sym + fixedMonthly.toLocaleString('en-US'),
+                            sub: label + ' (' + sym + fixedYearly.toLocaleString('en-US') + '/yr)',
+                            orig: sym + (origMonthly * 12).toLocaleString('en-US') + '/yr without discount',
+                            chip: discPct
+                        };
+                    } else {
+                        results[key] = {
+                            main: sym + origMonthly.toLocaleString('en-US'),
+                            sub: labelMo,
+                            orig: '',
+                            chip: ''
+                        };
+                    }
+                    return;
+                }
+
+                // ── All other countries: standard calculation ───────────────────
+                const priceMul = (tier.discount || 1.0) * tier.mul;
+                const yearlyUSD = base;
                 const origUSD = base / discFactor;
                 const monthlyUSD = origUSD / 12;
 
@@ -1979,15 +1947,8 @@
                 const localOrig = origUSD * priceMul;
                 const localMonthly = monthlyUSD * priceMul;
 
-                const sym = tier.sym;
                 const decimals = localYearly > 500 ? 0 : 2;
-
-                const fmt = (n) => {
-                    const rounded = decimals === 0 ? Math.round(n) : Math.round(n * 100) / 100;
-                    return sym + rounded.toLocaleString('en-US', { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
-                };
-
-                const discPct = key === 'team' ? '15% OFF' : '10% OFF';
+                const fmt = (n) => formatLocal(sym, n, decimals);
 
                 if (yearly) {
                     results[key] = {
@@ -2018,7 +1979,6 @@
             ['idea', 'hustler', 'team'].forEach(plan => {
                 const p = prices[plan];
                 const mainEl = document.getElementById(plan + '-price');
-                // Format main price — put symbol as superscript prefix if it's $ £ € etc.
                 mainEl.innerHTML = '<sup>' + tier.sym + '</sup>' + p.main.replace(tier.sym, '');
                 document.getElementById(plan + '-sub').textContent = p.sub;
                 document.getElementById(plan + '-orig').textContent = p.orig;
@@ -2027,7 +1987,6 @@
                 chip.style.display = p.chip ? 'inline-block' : 'none';
             });
 
-            // Update location indicator
             const locEl = document.getElementById('location-indicator');
             if (locEl) locEl.textContent = tier.flag + ' ' + tier.name + ' · ' + tier.code;
         }
@@ -2036,11 +1995,9 @@
             applyPrices(currentCountry);
         }
 
-        // ─── COUNTRY SELECTOR UI ───────────────────────────────────────────────────
         function buildCountrySelector() {
             const sel = document.getElementById('country-select');
             if (!sel) return;
-            // Group by region
             const regions = [
                 { label: '🌎 Americas', codes: ['US', 'CA', 'BR', 'MX', 'CO', 'AR', 'CL'] },
                 { label: '🌍 Europe', codes: ['GB', 'DE', 'FR', 'NL', 'SE', 'NO', 'CH'] },
@@ -2064,7 +2021,6 @@
             sel.addEventListener('change', e => applyPrices(e.target.value));
         }
 
-        // ─── IP GEOLOCATION ────────────────────────────────────────────────────────
         async function detectCountry() {
             try {
                 const res = await fetch('https://ipapi.co/json/');
@@ -2075,13 +2031,12 @@
                     const sel = document.getElementById('country-select');
                     if (sel) sel.value = code;
                 }
-            } catch (e) { /* silently fall back to US */ }
+            } catch (e) { /* fall back to US */ }
             applyPrices(currentCountry);
             document.getElementById('location-loading').style.display = 'none';
             document.getElementById('location-row').style.opacity = '1';
         }
 
-        // ─── SECTION / PERSONA SWITCHING ──────────────────────────────────────────
         function switchSection(sec) {
             document.querySelectorAll('.nav-btn').forEach((b, i) => {
                 b.classList.toggle('active',
@@ -2108,7 +2063,6 @@
             });
         }
 
-        // ─── INIT ──────────────────────────────────────────────────────────────────
         document.addEventListener('DOMContentLoaded', () => {
             buildCountrySelector();
             detectCountry();
